@@ -1,0 +1,499 @@
+/* Estilos para IntelRR: Visualizador de Ruta Óptima con Enfoque Ecológico */
+/* Estos estilos están diseñados para crear una interfaz moderna, limpia y profesional, con un enfoque en la usabilidad y la estética visual. 
+Se utilizan colores oscuros para el fondo, acentos verdes para resaltar elementos importantes relacionados con la ecología, y tipografía clara para mejorar la legibilidad. */
+
+/* ------------------------------------------------------ */
+/* Variables de color para mantener la consistencia y facilitar cambios futuros 
+/* ------------------------------------------------------ */
+main {
+    display: flex;
+    flex-direction: column; /* Apila las filas verticalmente */
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px; /* Ajusta según tu diseño */
+    margin: 0 auto;
+}
+
+:root {
+    --bg-dark: #293036;
+    /* Tu nuevo color base */
+    --bg-light: #343d46;
+    /* Un tono más claro para contrastes */
+    --accent-green: #2ecc71;
+    /* Verde para rutas ecológicas */
+    --accent-blue: #3498db;
+    /* Azul para nodos y selección */
+    --text-white: #ffffff;
+    --text-gray: #bdc3c7;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    margin: 0;
+}
+
+/* ------------------------------------------------------ */
+/* Estilo de las secciones principales: Canvas, Panel de Pesos y Panel de Estadísticas
+/* ------------------------------------------------------ */
+.top-row {
+    display: flex;
+    flex-direction: row;
+    /* Canvas y Side-panel lado a lado */
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.canvas-container {
+    flex: 2;
+    /* El canvas ocupa más espacio */
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.side-panel {
+    flex: 1;
+    /* El panel de pesos es más estrecho */
+    min-width: 320px;
+}
+
+.bottom-row {
+    width: 100%;
+    /* La gráfica usa todo el ancho inferior */
+}
+
+.stats-panel-modern {
+    background: #21272c;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ------------------------------------------------------ */
+/* Estilo del título y header */
+/* ------------------------------------------------------ */
+.main-header {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0 10px 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Línea sutil de división */
+}
+
+.main-title {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilo para la marca principal */
+.brand {
+    font-weight: 800;
+    /* Extra Bold */
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+    color: #2ecc71;
+    /* El verde neón que elegiste */
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+    /* Brillo sutil */
+}
+
+.divider {
+    color: #454d55;
+    font-weight: 200;
+    font-size: 1.8rem;
+}
+
+/* Estilo para el subtítulo */
+.tagline {
+    font-weight: 300;
+    /* Light */
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* Estilo para la pequeña instrucción debajo */
+.instruction {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+/* ------------------------------------------------------ */
+/* Estilo de los nodos y entradas de peso 
+/* ------------------------------------------------------ */
+/* Inputs de peso con look moderno */
+.node-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-left: 4px solid var(--accent-blue);
+    margin-bottom: 8px;
+    transition: transform 0.2s;
+}
+
+.node-item:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.node-item input {
+    background: #21272d;
+    border: 1px solid #454d55;
+    color: white;
+    border-radius: 4px;
+}
+
+.nodes-input-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+.node-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border-left: 3px solid #1976d2;
+}
+
+.node-item.deposito {
+    border-left-color: #fb8c00;
+}
+
+/* 1. Estilo base del input (estilo caja de texto limpia) */
+.node-item input {
+    background: #1f252a;
+    /* Un tono más oscuro que el fondo base */
+    border: 1px solid #3d464f;
+    color: #2ecc71;
+    /* Verde neón para los números */
+    font-family: 'Poppins', sans-serif;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 65px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+    -moz-appearance: textfield;
+    /* Quita flechas en Firefox */
+}
+
+/* 2. Quitar flechas en Chrome, Safari y Edge */
+.node-item input::-webkit-outer-spin-button,
+.node-item input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 3. Efecto Hover y Focus (Oscurecer más y resaltar borde) */
+.node-item input:hover,
+.node-item input:focus {
+    background: #161b1f;
+    /* Fondo aún más oscuro al interactuar */
+    border-color: #2ecc71;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.2);
+}
+
+/* Ajuste para que el texto de la parada se vea bien sobre el oscuro */
+.node-item {
+    background: #293036;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ------------------------------------------------------ */
+/* Estilo de los botones */
+/* ------------------------------------------------------ */
+button.primary {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+button.primary:hover {
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+    transform: translateY(-2px);
+}
+
+.canvas-container {
+    background: #ffffff;
+    border: 3px solid #2e7d32;
+    /* Verde botella */
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    line-height: 0;
+    /* Elimina espacios fantasma bajo el canvas */
+}
+
+canvas {
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+
+.controls {
+    min-width: 250px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid #2e7d32;
+}
+
+.stats-panel h3 {
+    margin-top: 0;
+    color: #2e7d32;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background: #333;
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-left: 5px solid #2e7d32;
+    /* Verde IntelRR */
+    animation: slideIn 0.5s ease forwards;
+}
+
+.toast .close-btn {
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 15px;
+    opacity: 0.7;
+}
+
+.toast .close-btn:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.load-bar-container {
+    margin: 15px 0;
+    background: #eee;
+    border-radius: 10px;
+    height: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.load-progress {
+    height: 100%;
+    width: 0%;
+    background: #2e7d32;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#vehicleSelect {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.weight-summary-panel {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    margin-top: 20px;
+}
+
+#totalWeightDisplay {
+    font-size: 1.2em;
+    color: var(--accent-green);
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+.weight-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.weight-bar-bg {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.weight-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #2e7d32;
+    /* Verde por defecto */
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.overloaded-text {
+    color: #d32f2f;
+}
+
+.overloaded-bar {
+    background: #d32f2f !important;
+}
+
+/* ------------------------------------------------------ */
+/* Estilo del panel de estadísticas y gráficos */
+/* ------------------------------------------------------ */
+.stats-panel-modern {
+    background: #21272c;
+    /* Fondo oscuro coherente */
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stats-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* --- ESTILO DE LOS BOTONES (TAB GROUP) --- */
+.tab-group {
+    display: flex;
+    background: #191f24;
+    /* Un poco más oscuro que el panel */
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid #3d464f;
+}
+
+.tab-group input[type="radio"] {
+    display: none;
+    /* Escondemos el radio original */
+}
+
+.tab-group label {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+/* Efecto cuando está seleccionado */
+.tab-group input[type="radio"]:checked+label {
+    background: #2ecc71;
+    /* Verde neón */
+    color: #000000;
+    /* Texto negro para contraste */
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+}
+
+/* ------------------------------------------------------ */
+/* Estilo de la zona de gráficos */
+/* ------------------------------------------------------ */
+
+/* Estilo del chart */
+.chart-wrapper {
+    position: relative;
+    height: 300px; /* Asegúrate de que tenga una altura fija */
+    width: 100%;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid #2ecc71;
+    /* Un toque verde para lo ecológico */
+}
+
+.metric-card small {
+    display: block;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.metric-card p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 5px 0 0 0;
+    color: #fff;
+}
